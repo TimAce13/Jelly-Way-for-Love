@@ -1,0 +1,26 @@
+fileFormatVersion: 2
+guid: cb9a97192719cdb45a9746a55144a61e
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: 0
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Tektur
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 4e6184c44e876164f871d44af26c67a8, type: 3}
+  - {fileID: 12800000, guid: fcb07baab54fab448a4bd4a2bfdfd0e1, type: 3}
+  - {fileID: 12800000, guid: 9ef0eaabb4b10364dbd6b3c453fc3aaf, type: 3}
+  - {fileID: 12800000, guid: 7eabc6e906121c742ba242bd737c7ec6, type: 3}
+  - {fileID: 12800000, guid: 0132e17987769b4489a5d56929fc692e, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 1
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
