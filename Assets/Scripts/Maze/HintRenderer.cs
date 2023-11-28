@@ -7,6 +7,8 @@ public class HintRenderer : MonoBehaviour
 
     private LineRenderer componentLineRenderer;
 
+    public List<Vector3> positions = new List<Vector3>();
+
     private void Start()
     {
         componentLineRenderer = GetComponent<LineRenderer>();
@@ -17,7 +19,7 @@ public class HintRenderer : MonoBehaviour
         Maze maze = MazeSpawner.maze;
         int x = maze.finishPosition.x;
         int y = maze.finishPosition.y;
-        List<Vector3> positions = new List<Vector3>();
+        positions = new List<Vector3>();
 
         while ((x != 0 || y != 0) && positions.Count < 10000)
         {

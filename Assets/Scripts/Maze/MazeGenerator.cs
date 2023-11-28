@@ -8,9 +8,13 @@ public class MazeGenerator
     public int Height = 1;
     private int _currentLevel;
 
+    private Saves _save;
+
     public Maze GenerateMaze()
     {
-        _currentLevel = PlayerPrefs.GetInt("Level");
+        _save = new Saves();
+
+        _currentLevel = _save.GetCurrentLevel();
 
         if (_currentLevel % 2 == 0)
         {

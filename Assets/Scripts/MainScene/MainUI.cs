@@ -6,28 +6,33 @@ using UnityEngine.SceneManagement;
 public class MainUI : MonoBehaviour
 {
     [SerializeField] private TMPro.TextMeshProUGUI levelText;
+    [SerializeField] private TMPro.TextMeshProUGUI jellyCoinsText;
 
-    private int _currentLevel;
+    [SerializeField] private GameObject shopUI;
+    [SerializeField] private GameObject mainUI;
+
+    private Saves _save;
+
     void Start()
     {
-        if (PlayerPrefs.HasKey("Level"))
-        {
-            _currentLevel = PlayerPrefs.GetInt("Level");
-
-        }
-        else
-        {
-            PlayerPrefs.SetInt("Level", 1);
-            _currentLevel = PlayerPrefs.GetInt("Level");
-        }
-
-        levelText.text = "Уровень " + _currentLevel;
+        _save = new Saves();
+        levelText.text = "Уровень " + _save.GetCurrentLevel();
+        UpdateJellyCoinsText();
     }
 
-    public void StartGame()
+    public void StartButtonClicked()
     {
         SceneManager.LoadScene(1);
     }
 
+    public void ShopButtonClicked()
+    {
+        shopUI.SetActive(true);
+        mainUI.SetActive(false);
+    }
 
+    public void UpdateJellyCoinsText()
+    {
+        jellyCoinsText.text = _save.GetJellyCoins().ToString();
+    }
 }

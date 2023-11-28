@@ -15,5 +15,8 @@ public class PlayerControls3D : MonoBehaviour
             transform.rotation = Quaternion.LookRotation(_rigidbody.velocity);
         }
         _rigidbody.AddForce(0, 0, runSpeed * Time.deltaTime);
+
+        /*        Vector3 direction = Vector3.forward * _joystick.Vertical + Vector3.right * _joystick.Horizontal;
+                _rigidbody.AddForce(direction * _moveSpeed * Time.deltaTime, ForceMode.VelocityChange);*/
     }
 }
