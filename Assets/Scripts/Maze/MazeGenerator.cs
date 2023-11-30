@@ -1,5 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public class MazeGenerator
@@ -10,7 +11,7 @@ public class MazeGenerator
 
     private Saves _save;
 
-    public Maze GenerateMaze()
+    public Maze GenerateMaze(Cell[] CellPrefabs)
     {
         _save = new Saves();
 
@@ -18,8 +19,8 @@ public class MazeGenerator
 
         if (_currentLevel % 2 == 0)
         {
-            Width += _currentLevel/2 + 1;
-            Height += _currentLevel/2 + 2;
+            Width += _currentLevel / 2 + 1;
+            Height += _currentLevel / 2 + 2;
         }
         else
         {
@@ -33,7 +34,21 @@ public class MazeGenerator
         {
             for (int y = 0; y < cells.GetLength(1); y++)
             {
-                cells[x, y] = new MazeGeneratorCell {X = x, Y = y};
+                cells[x, y] = new MazeGeneratorCell { X = x, Y = y };
+            }
+        }
+
+        for (int x = 0; x < Width; x++)
+        {
+            for (int y = 0; y < Height; y++)
+            {
+                cells[x, y] = new MazeGeneratorCell
+                {
+                    X = x,
+                    Y = y,
+                    Visited = cells[x, y].Visited,
+                    cellPrefabID = UnityEngine.Random.Range(0, CellPrefabs.Length)
+                };
             }
         }
 
@@ -129,5 +144,89 @@ public class MazeGenerator
         else if (furthest.Y == Height - 2) maze[furthest.X, furthest.Y + 1].WallBottom = false;
 
         return new Vector2Int(furthest.X, furthest.Y);
+    }
+
+    // Save the maze configuration to a file
+    public void SaveMazeConfig(string filePath, MazeGeneratorCell[,] maze)
+    {
+        MazeConfig config = new MazeConfig
+        {
+            Width = Width,
+            Height = Height,
+            CurrentLevel = _currentLevel,
+            MazeStructure = new int[Width, Height],
+            WallLeft = new bool[Width, Height ],
+            WallBottom = new bool[Width, Height],
+            FinishPosition = new Vector2Int(),
+            cellPrefabID = new int[Width, Height]
+        };
+
+        for (int x = 0; x < Width; x++)
+        {
+            for (int y = 0; y < Height; y++)
+            {
+                config.MazeStructure[x, y] = maze[x, y].Visited ? 1 : 0;
+            }
+        }
+
+        for (int x = 0; x < Width; x++)
+        {
+            for (int y = 0; y < Height; y++)
+            {
+                config.WallLeft[x, y] = maze[x, y].WallLeft;
+                config.WallBottom[x, y] = maze[x, y].WallBottom;
+                config.cellPrefabID[x, y] = maze[x, y].cellPrefabID;
+            }
+        }
+
+        config.FinishPosition = PlaceMazeExit(maze);
+
+        string jsonConfig = JsonConvert.SerializeObject(config);
+        System.IO.File.WriteAllText(filePath, jsonConfig);
+    }
+
+
+    // Load the maze configuration from a file
+    public Maze LoadMazeConfig(string filePath)
+    {
+        string jsonConfig = System.IO.File.ReadAllText(filePath);
+        MazeConfig config = JsonConvert.DeserializeObject<MazeConfig>(jsonConfig);
+
+        Width = config.Width;
+        Height = config.Height;
+
+        MazeGeneratorCell[,] cells = new MazeGeneratorCell[Width, Height];
+
+        for (int x = 0; x < Width; x++)
+        {
+            for (int y = 0; y < Height; y++)
+            {
+                cells[x, y] = new MazeGeneratorCell
+                {
+                    X = x,
+                    Y = y,
+                    Visited = config.MazeStructure[x, y] == 1,
+                    cellPrefabID = config.cellPrefabID[x, y]  // Assign cellPrefabID
+
+                };
+            }
+        }
+
+        for (int x = 0; x < Width; x++)
+        {
+            for (int y = 0; y < Height; y++)
+            {
+                cells[x, y].WallLeft = config.WallLeft[x, y];
+                cells[x, y].WallBottom = config.WallBottom[x, y];
+            }
+        }
+
+        Maze maze = new Maze
+        {
+            cells = cells,
+            finishPosition = config.FinishPosition
+        };
+
+        return maze;
     }
 }

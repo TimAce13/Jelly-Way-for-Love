@@ -16,4 +16,6 @@ public class MazeGeneratorCell
 
     public bool Visited = false;
     public int DistanceFromStart;
+
+    public int cellPrefabID;
 }
