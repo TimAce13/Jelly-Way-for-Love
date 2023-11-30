@@ -30,6 +30,8 @@ public class Shop : MonoBehaviour
     [SerializeField] private GameObject shopUI;
     [SerializeField] private GameObject mainUI;
 
+    [SerializeField] private GameObject[] _eventParicles;
+
     private int amountOfPlayerObjects;
 
     private void Start()
@@ -91,6 +93,8 @@ public class Shop : MonoBehaviour
             CheckSates();
             SavePlayerObjects();
             save.EditJellyCoins(_currentObject.price * -1);
+            SpawnRandomParticle();
+
         }
     }
 
@@ -101,6 +105,7 @@ public class Shop : MonoBehaviour
         playerObjects[_currentObject.id].state = 2;
         CheckSates();
         SavePlayerObjects();
+        SpawnRandomParticle();
     }
 
     private void CheckArrowsStates()
@@ -133,6 +138,13 @@ public class Shop : MonoBehaviour
     {
         CheckArrowsStates();
         CheckGameObjectState();
+    }
+
+    private void SpawnRandomParticle()
+    {
+        var particleID = UnityEngine.Random.Range(0, _eventParicles.Length);
+
+        Destroy(Instantiate(_eventParicles[particleID], new Vector3(0,1.5f,15), Quaternion.identity),1);
     }
 
     private void SavePlayerObjects()

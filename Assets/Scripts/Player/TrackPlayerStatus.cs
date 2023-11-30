@@ -13,6 +13,9 @@ public class TrackPlayerStatus : MonoBehaviour
 
     private Saves save;
 
+    private int _maxAliveParticlesAmount = 6;
+    private int _curAliveParticlesAmount = 0;
+
     private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Finish")
@@ -28,7 +31,16 @@ public class TrackPlayerStatus : MonoBehaviour
 
         playerObjects.FirstOrDefault(entry => entry.state == 2).PlayerObject.SetActive(true);
 
-        StartCoroutine(PerformActionEveryQuarterSecond());
+        var _particlesAlive = new List<GameObject>();
+
+        while (_curAliveParticlesAmount < _maxAliveParticlesAmount)
+        {
+            _curAliveParticlesAmount += 1;
+            var _p = Instantiate(_particles, new Vector3(-100, -10 - 100), Quaternion.identity);
+            _particlesAlive.Add(_p);
+        }
+
+        StartCoroutine(RespawnParticles(_particlesAlive));
     }
 
     private void LoadPlayerObjectsFromSave()
@@ -41,12 +53,16 @@ public class TrackPlayerStatus : MonoBehaviour
         }
     }
 
-    IEnumerator PerformActionEveryQuarterSecond()
+    IEnumerator RespawnParticles(List<GameObject> _particlesAlive)
     {
         while (true)
         {
-            Instantiate(_particles, new Vector3(_player.transform.position.x, 0.5f, _player.transform.position.z), Quaternion.identity);
-            yield return new WaitForSeconds(0.25f);
+            var _p = _particlesAlive[0];
+            _particlesAlive.RemoveAt(0);
+            _p.transform.position = new Vector3(_player.transform.position.x, 2f, _player.transform.position.z);
+            _p.GetComponent<ParticleSystem>().Play();
+            _particlesAlive.Add(_p);
+            yield return new WaitForSeconds(0.5f); // Wait for 0.25 seconds
         }
     }
 }

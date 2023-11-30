@@ -26,7 +26,11 @@ public class MazeSpawner : MonoBehaviour
                 c.WallLeft.SetActive(maze.cells[x, y].WallLeft);
                 c.WallBottom.SetActive(maze.cells[x, y].WallBottom);
 
-                if (x == maze.cells.GetLength(0) - 1 || y == maze.cells.GetLength(0) - 1)
+                if (x == maze.cells.GetLength(0)-1)
+                {
+                    c.Floor.SetActive(false);
+                }
+                if (y == maze.cells.GetLength(1) - 1)
                 {
                     c.Floor.SetActive(false);
                 }
@@ -47,7 +51,7 @@ public class MazeSpawner : MonoBehaviour
                 if (isOnTheWay == false)
                 {
                     var rand = Random.Range(1, 100);
-                    if (rand >= 0)
+                    if (rand >= 30)
                     {
                         Instantiate(JellyPoint, new Vector3(x * CellSize.x + CellSize.x / 2, 1, y * CellSize.z + CellSize.z / 2), Quaternion.identity);
                     }
