@@ -1,0 +1,1 @@
+{"Width":3,"Height":3,"CurrentLevel":1,"MazeStructure":[[1,1,0],[1,1,0],[0,0,0]],"WallLeft":[[true,true,false],[true,false,false],[true,true,false]],"WallBottom":[[true,false,true],[false,false,true],[false,false,false]],"FinishPosition":{"x":1,"y":0,"magnitude":1.0,"sqrMagnitude":1},"cellPrefabID":[[0,0,0],[0,0,0],[0,0,0]]}

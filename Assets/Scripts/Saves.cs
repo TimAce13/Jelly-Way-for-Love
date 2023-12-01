@@ -24,6 +24,7 @@ public class Saves : MonoBehaviour
 
     void Start()
     {
+        //PlayerPrefs.DeleteAll();
         if (!PlayerPrefs.HasKey("Save"))
         {
             SetDefaultSettings();

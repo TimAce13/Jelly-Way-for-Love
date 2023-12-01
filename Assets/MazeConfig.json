@@ -1,1 +1,46 @@
-{"Width":10,"Height":11,"CurrentLevel":16,"MazeStructure":[[1,1,1,1,1,1,1,1,1,1,0],[1,1,1,1,1,1,1,1,1,1,0],[1,1,1,1,1,1,1,1,1,1,0],[1,1,1,1,1,1,1,1,1,1,0],[1,1,1,1,1,1,1,1,1,1,0],[1,1,1,1,1,1,1,1,1,1,0],[1,1,1,1,1,1,1,1,1,1,0],[1,1,1,1,1,1,1,1,1,1,0],[1,1,1,1,1,1,1,1,1,1,0],[0,0,0,0,0,0,0,0,0,0,0]],"WallLeft":[[true,true,true,true,true,false,true,true,true,true],[false,false,true,true,false,false,true,false,false,false],[true,true,false,true,true,false,false,true,true,false],[false,false,true,false,false,true,true,false,false,false],[false,true,false,true,false,false,true,true,false,false],[true,true,true,false,true,false,false,false,true,false],[false,false,true,true,false,true,false,true,false,false],[false,false,false,false,true,false,true,true,true,false],[false,false,true,true,false,true,true,true,true,false],[false,false,false,false,false,false,false,false,false,false]],"WallBottom":[[true,true,false,false,false,true,false,false,true,false,false],[true,false,true,false,false,true,true,true,false,true,false],[true,true,false,true,false,true,false,true,false,true,false],[true,false,true,false,true,true,false,false,true,true,false],[true,false,false,true,false,true,true,true,false,true,false],[true,true,false,false,true,false,true,false,true,false,false],[true,true,true,false,false,true,false,true,false,true,false],[true,true,true,true,false,true,false,false,false,false,false],[true,false,false,false,false,true,false,false,false,false,false]],"FinishPosition":{"x":0,"y":5,"magnitude":5.0,"sqrMagnitude":25}}
+{
+  "Width": 10,
+  "Height": 11,
+  "CurrentLevel": 16,
+  "MazeStructure": [
+    [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 ],
+    [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 ],
+    [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 ],
+    [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 ],
+    [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 ],
+    [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 ],
+    [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 ],
+    [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 ],
+    [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 ],
+    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+  ],
+  "WallLeft": [
+    [ true, true, true, true, true, false, true, true, true, true ],
+    [ false, false, true, true, false, false, true, false, false, false ],
+    [ true, true, false, true, true, false, false, true, true, false ],
+    [ false, false, true, false, false, true, true, false, false, false ],
+    [ false, true, false, true, false, false, true, true, false, false ],
+    [ true, true, true, false, true, false, false, false, true, false ],
+    [ false, false, true, true, false, true, false, true, false, false ],
+    [ false, false, false, false, true, false, true, true, true, false ],
+    [ false, false, true, true, false, true, true, true, true, false ],
+    [ false, false, false, false, false, false, false, false, false, false ]
+  ],
+  "WallBottom": [
+    [ true, true, false, false, false, true, false, false, true, false, false ],
+    [ true, false, true, false, false, true, true, true, false, true, false ],
+    [ true, true, false, true, false, true, false, true, false, true, false ],
+    [ true, false, true, false, true, true, false, false, true, true, false ],
+    [ true, false, false, true, false, true, true, true, false, true, false ],
+    [ true, true, false, false, true, false, true, false, true, false, false ],
+    [ true, true, true, false, false, true, false, true, false, true, false ],
+    [ true, true, true, true, false, true, false, false, false, false, false ],
+    [ true, false, false, false, false, true, false, false, false, false, false ]
+  ],
+  "FinishPosition": {
+    "x": 0,
+    "y": 5,
+    "magnitude": 5.0,
+    "sqrMagnitude": 25
+  }
+}

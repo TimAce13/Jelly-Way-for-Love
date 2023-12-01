@@ -1,0 +1,35 @@
+{
+  "Width": 4,
+  "Height": 4,
+  "CurrentLevel": 3,
+  "MazeStructure": [
+    [ 1, 1, 1, 0 ],
+    [ 1, 1, 1, 0 ],
+    [ 1, 1, 1, 0 ],
+    [ 0, 0, 0, 0 ]
+  ],
+  "WallLeft": [
+    [ true, true, true, false ],
+    [ false, false, false, false ],
+    [ false, false, false, false ],
+    [ true, true, false, false ]
+  ],
+  "WallBottom": [
+    [ true, true, false, true ],
+    [ true, true, true, true ],
+    [ true, false, true, true ],
+    [ false, false, false, false ]
+  ],
+  "FinishPosition": {
+    "x": 2,
+    "y": 2,
+    "magnitude": 2.828427,
+    "sqrMagnitude": 8
+  },
+  "cellPrefabID": [
+    [ 0, 0, 0, 0 ],
+    [ 0, 0, 0, 0 ],
+    [ 0, 0, 0, 0 ],
+    [ 0, 0, 0, 0 ]
+  ]
+}

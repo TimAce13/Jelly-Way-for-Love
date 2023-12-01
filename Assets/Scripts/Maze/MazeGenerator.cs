@@ -11,21 +11,55 @@ public class MazeGenerator
 
     private Saves _save;
 
-    public Maze GenerateMaze(Cell[] CellPrefabs)
+    ///////////////////////////////////////
+
+
+    public void ResetAndGenerateMaze()
+    {
+        Width = 1;
+        Height = 1;
+
+        MazeGeneratorCell[,] cells = new MazeGeneratorCell[Width, Height];
+
+        for (int x = 0; x < cells.GetLength(0); x++)
+        {
+            for (int y = 0; y < cells.GetLength(1); y++)
+            {
+                cells[x, y] = new MazeGeneratorCell { X = x, Y = y };
+            }
+        }
+
+        Maze mazeInstance = new Maze
+        {
+            cells = cells,
+            finishPosition = Vector2Int.zero // or any default value
+        };
+
+        RemoveWallsWithBacktracker(cells); // Re-generate the maze as needed
+    }
+
+
+    ///////////////////////////////////////
+
+    //Remove int level
+
+    public Maze GenerateMaze(Cell[] CellPrefabs, int level)
     {
         _save = new Saves();
 
         _currentLevel = _save.GetCurrentLevel();
 
+        _currentLevel = level;
+
         if (_currentLevel % 2 == 0)
         {
-            Width += _currentLevel / 2 + 1;
-            Height += _currentLevel / 2 + 2;
+            Width = _currentLevel / 2 + 2;
+            Height = _currentLevel / 2 + 3;
         }
         else
         {
-            Width += ((_currentLevel + 1) / 2) + 1;
-            Height += ((_currentLevel + 1) / 2) + 1;
+            Width = (((_currentLevel + 1) / 2) + 1) + 1;
+            Height = (((_currentLevel + 1) / 2) + 1) + 1;
         }
 
         MazeGeneratorCell[,] cells = new MazeGeneratorCell[Width, Height];
@@ -47,7 +81,7 @@ public class MazeGenerator
                     X = x,
                     Y = y,
                     Visited = cells[x, y].Visited,
-                    cellPrefabID = UnityEngine.Random.Range(0, CellPrefabs.Length)
+                    cellPrefabID = 0
                 };
             }
         }
