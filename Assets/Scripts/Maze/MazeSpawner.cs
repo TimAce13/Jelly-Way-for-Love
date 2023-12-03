@@ -35,7 +35,7 @@ public class MazeSpawner : MonoBehaviour
             Destroy(cell.gameObject);
         }
 
-        maze = generator.GenerateMaze(CellPrefabs,int.Parse(LevelField.text));
+       // maze = generator.GenerateMaze(CellPrefabs,int.Parse(LevelField.text));
 
         SpawnMaze();
     }
@@ -62,16 +62,16 @@ public class MazeSpawner : MonoBehaviour
         generator = new MazeGenerator();
         _save = new Saves();
 
-        //string filePath = $"Assets/Scenes/LevelConfigs/MazeConfig_Lvl{_save.GetCurrentLevel().ToString()}.json";
+        string filePath = $"Assets/Scenes/LevelConfigs/MazeConfig_Lvl{_save.GetCurrentLevel().ToString()}.json";
 
         // Uncomment the line below to generate a new maze and save its configuration
         //maze = generator.GenerateMaze(CellPrefabs);
         //generator.SaveMazeConfig(filePath, maze.cells);
 
         //Uncomment the line below to load the maze configuration and spawn the maze
-        //maze = generator.LoadMazeConfig(filePath);
+        maze = generator.LoadMazeConfig(filePath);
 
-        //SpawnMaze();
+        SpawnMaze();
     }
 
     private void SpawnMaze()

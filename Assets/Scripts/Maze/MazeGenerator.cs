@@ -43,13 +43,13 @@ public class MazeGenerator
 
     //Remove int level
 
-    public Maze GenerateMaze(Cell[] CellPrefabs, int level)
+    public Maze GenerateMaze(Cell[] CellPrefabs)
     {
         _save = new Saves();
 
         _currentLevel = _save.GetCurrentLevel();
 
-        _currentLevel = level;
+        //_currentLevel = level;
 
         if (_currentLevel % 2 == 0)
         {
